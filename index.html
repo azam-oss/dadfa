@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ателье "Элегант"</title>
+    <style>
+        /* Общие стили */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Шапка */
+        header {
+            background-color: #4a6fa5;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        /* Навигация */
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover {
+            background-color: #3a5a80;
+        }
+        
+        /* Основной контент */
+        main {
+            padding: 30px 0;
+            min-height: 70vh;
+        }
+        
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .section.active {
+            display: block;
+        }
+        
+        /* Формы авторизации */
+        .auth-form {
+            max-width: 400px;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        button {
+            background-color: #4a6fa5;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #3a5a80;
+        }
+        
+        /* Карточки */
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        
+        /* Подвал */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 30px;
+        }
+        
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Ателье "Элегант"</h1>
+            <nav id="main-nav">
+                <a href="#" data-section="home">Главная</a>
+                <a href="#" data-section="services">Услуги</a>
+                <a href="#" data-section="partners">Партнеры</a>
+                <a href="#" data-section="clients">Клиенты</a>
+                <a href="#" data-section="resources">Ресурсы</a>
+                <a href="#" data-section="channels">Каналы сбыта</a>
+                <a href="#" data-section="contacts">Контакты</a><a href="#" data-section="login" id="auth-link">Вход</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Главная страница -->
+        <section id="home" class="section active">
+            <h2>Добро пожаловать в наше ателье!</h2>
+            <div class="card">
+                <p>Мы предлагаем высококачественные услуги пошива и ремонта одежды с использованием лучших материалов и оборудования.</p>
+                <p>Для доступа ко всем возможностям сайта, пожалуйста, <a href="#" data-section="register">зарегистрируйтесь</a> или <a href="#" data-section="login">войдите</a>.</p>
+            </div>
+            
+            <div class="card">
+                <h3>Наши преимущества:</h3>
+                <ul>
+                    <li>Качественные материалы от проверенных поставщиков</li>
+                    <li>Профессиональное оборудование</li>
+                    <li>Индивидуальный подход к каждому клиенту</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Регистрация -->
+        <section id="register" class="section">
+            <div class="auth-form">
+                <h2>Регистрация</h2>
+                <form id="reg-form">
+                    <div class="form-group">
+                        <label for="reg-name">Имя:</label>
+                        <input type="text" id="reg-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email">Email:</label>
+                        <input type="email" id="reg-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password">Пароль:</label>
+                        <input type="password" id="reg-password" required>
+                    </div>
+                    <button type="submit">Зарегистрироваться</button>
+                </form>
+                <p>Уже есть аккаунт? <a href="#" data-section="login">Войти</a></p>
+            </div>
+        </section>
+
+        <!-- Вход -->
+        <section id="login" class="section">
+            <div class="auth-form">
+                <h2>Вход</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email:</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Пароль:</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit">Войти</button>
+                </form>
+                <p>Нет аккаунта? <a href="#" data-section="register">Зарегистрироваться</a></p>
+            </div>
+        </section>
+
+        <!-- Услуги -->
+        <section id="services" class="section">
+            <h2>Наши услуги</h2>
+            
+            <div class="card">
+                <h3>Пошив одежды</h3>
+                <p>Индивидуальный пошив одежды по вашим меркам и эскизам:</p>
+                <ul>
+                    <li>Вечерние платья</li>
+                    <li>Костюмы</li>
+                    <li>Верхняя одежда</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <h3>Ремонт одежды</h3>
+                <p>Качественный ремонт любой сложности:</p>
+                <ul>
+                    <li>Замена молний</li>
+                    <li>Ушивание/расширение</li>
+                    <li>Ремонт порванных изделий</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Партнеры -->
+        <section id="partners" class="section">
+            <h2>Наши партнеры</h2>
+            
+            <div class="card">
+                <h3>Компания "Ораш"</h3>
+                <p>Обеспечивает нас профессиональными швейными машинами.</p>
+                <p>Благодаря сотрудничеству с "Ораш" мы можем гарантировать высокое качество пошива.</p>
+            </div><div class="card">
+                <h3>Компания "Хоруг"</h3>
+                <p>Поставляет высококачественные ткани и нити разных цветов.</p>
+                <p>Используем только проверенные материалы для создания долговечных изделий.</p>
+            </div>
+        </section>
+
+        <!-- Клиенты -->
+        <section id="clients" class="section">
+            <h2>Наши клиенты</h2>
+            
+            <div class="card">
+                <h3>Основные сегменты:</h3>
+                <ul>
+                    <li><strong>Модели</strong> - пошив уникальной одежды для показов и фотосессий</li>
+                    <li><strong>Дом ателье</strong> - обслуживание частных клиентов, индивидуальный пошив</li>
+                    <li><strong>Баннеры</strong> - изготовление рекламных тканевых конструкций</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Ресурсы -->
+        <section id="resources" class="section">
+            <h2>Наши ресурсы</h2>
+            
+            <div class="card">
+                <h3>Основное оборудование и материалы:</h3>
+                <ul>
+                    <li>Профессиональные швейные машины</li>
+                    <li>Ткани различных видов и расцветок</li>
+                    <li>Нитки всех цветов</li>
+                    <li>Специальные ножницы и инструменты</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Каналы сбыта -->
+        <section id="channels" class="section">
+            <h2>Каналы сбыта</h2>
+            
+            <div class="card">
+                <h3>Основные направления:</h3>
+                <ul>
+                    <li><strong>Онлайн-магазин</strong> - заказы через наш сайт</li>
+                    <li><strong>Сотрудничество с дизайнерами</strong> - реализация дизайнерских проектов</li>
+                    <li><strong>Работа со стилистами</strong> - создание индивидуальных образов</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Контакты -->
+        <section id="contacts" class="section">
+            <h2>Контакты</h2>
+            
+            <div class="card">
+                <h3>Как с нами связаться:</h3>
+                <p><strong>Адрес:</strong> г. Москва, ул. Швейная, д. 10</p>
+                <p><strong>Телефон:</strong> +7 (495) 123-45-67</p>
+                <p><strong>Email:</strong> info@atelier-elegant.ru</p>
+                <p><strong>Часы работы:</strong> Пн-Пт: 9:00-18:00, Сб: 10:00-15:00</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Ателье "Элегант". Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Текущий пользователь
+        let currentUser = null;
+        
+        // Проверка авторизации при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            // Проверяем, есть ли сохраненный пользователь
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                updateAuthState();
+            }
+            
+            // Показываем главную страницу
+            showSection('home');
+            
+            // Обработчики навигации
+            document.querySelectorAll('[data-section]').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionId = this.getAttribute('data-section');
+                    showSection(sectionId);
+                });
+            });
+            
+            // Обработчик регистрации
+            document.getElementById('reg-form')?.addEventListener('submit', function(e) {
+                e.preventDefault();
+                registerUser();
+            });
+            
+            // Обработчик входа
+            document.getElementById('login-form')?.addEventListener('submit', function(e) {
+                e.preventDefault();
+                loginUser();
+            });
+        });// Показать выбранный раздел
+        function showSection(sectionId) {
+            // Скрываем все разделы
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Показываем выбранный раздел
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Обновляем состояние авторизации
+            updateAuthState();
+        }
+        
+        // Регистрация нового пользователя
+        function registerUser() {
+            const name = document.getElementById('reg-name').value;
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+            
+            // Проверяем, нет ли уже такого пользователя
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const userExists = users.some(user => user.email === email);
+            
+            if (userExists) {
+                alert('Пользователь с таким email уже зарегистрирован!');
+                return;
+            }
+            
+            // Сохраняем нового пользователя
+            const newUser = { name, email, password };
+            users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(users));
+            
+            // Автоматически входим
+            currentUser = newUser;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            
+            alert('Регистрация прошла успешно! Добро пожаловать, ' + name + '!');
+            showSection('home');
+        }
+        
+        // Вход пользователя
+        function loginUser() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const user = users.find(user => user.email === email && user.password === password);
+            
+            if (user) {
+                currentUser = user;
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                alert('Вход выполнен успешно! Добро пожаловать, ' + user.name + '!');
+                showSection('home');
+            } else {
+                alert('Неверный email или пароль!');
+            }
+        }
+        
+        // Обновление состояния авторизации
+        function updateAuthState() {
+            const authLink = document.getElementById('auth-link');
+            
+            if (currentUser) {
+                authLink.textContent = 'Выйти';
+                authLink.setAttribute('data-section', 'logout');
+                
+                // Показываем все разделы для авторизованных пользователей
+                document.querySelectorAll('[data-section]').forEach(link => {
+                    link.style.display = 'inline-block';
+                });
+            } else {
+                authLink.textContent = 'Вход';
+                authLink.setAttribute('data-section', 'login');
+                
+                // Скрываем некоторые разделы для неавторизованных
+                const protectedSections = ['services', 'partners', 'clients', 'resources', 'channels'];
+                document.querySelectorAll('[data-section]').forEach(link => {
+                    if (protectedSections.includes(link.getAttribute('data-section'))) {
+                        link.style.display = 'none';
+                    } else {
+                        link.style.display = 'inline-block';
+                    }
+                });
+            }
+            
+            // Обработчик выхода
+            if (authLink.getAttribute('data-section') === 'logout') {
+                authLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    currentUser = null;
+                    localStorage.removeItem('currentUser');
+                    alert('Вы вышли из системы');showSection('home');
+                });
+            }
+        }
+    </script>
+</body>
+</html>
